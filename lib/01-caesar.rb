@@ -1,15 +1,18 @@
 class CaesarCypher
-	def caesar(string, shift=5)
+	def self.cypher(string, shift=5)
 		alphabet = ("a".."z").to_a
-		string.each do |l|
-			alphabet.index()
+		new_string = []
+		string.split("").each do |l|
+			index = alphabet.index(l)
+			new_l = alphabet[index + shift]
+			new_string << new_l
 		end
 
-		return string
+		return new_string.join
 	end
 end
 
-# puts caesar("culo")
+# puts CaesarCypher.cypher("culo")
 
 # put checks for weird chars
 # check caps or not
