@@ -12,26 +12,26 @@ describe CaesarCypher do
 			expect(CaesarCypher.cypher("hat")).to			eql("mfy")
 			expect(CaesarCypher.cypher("string")).to		eql("xywnsl")
 			expect(CaesarCypher.cypher("culo")).to		eql("hzqt")
-			# expect(CaesarCypher.cypher("banana")).to 	eql("ananab")
-			# expect(CaesarCypher.cypher("anna")).to	 	eql("anna")
+			expect(CaesarCypher.cypher("banana")).to 	eql("gfsfsf")
+			expect(CaesarCypher.cypher("anna")).to	 	eql("fssf")
 		end
 
 		it "goes around the alphabet" do
 			# skip
-			# expect(CaesarCypher.cypher("vwxyz")).to				eql("abcde")
+			expect(CaesarCypher.cypher("vwxyz")).to				eql("abcde")
 			expect(CaesarCypher.cypher("vvvvv")).to				eql("aaaaa")
 		end
 		
 		it "respects caps lock" do
-			skip
-			expect(CaesarCypher.cypher("CulO")).to 		eql("OluC")
-			expect(CaesarCypher.cypher("BaNana")).to	eql("anaNaB")
-			expect(CaesarCypher.cypher("Anna")).to		eql("annA")
+			# skip
+			expect(CaesarCypher.cypher("CulO")).to 		eql("HzqT")
+			expect(CaesarCypher.cypher("BaNana")).to	eql("GfSfsf")
+			expect(CaesarCypher.cypher("Anna")).to		eql("Fssf")
 		end
 
 		it "deals with weird characters" do
 			skip
-			expect(CaesarCypher.cypher("!@#${%^&*()-=}))aNo")).to eql("aNo")
+			expect(CaesarCypher.cypher("!@#${%^&*()-=}))aNo")).to eql("!@#${%^&*()-=}))gSt")
 			expect(CaesarCypher.cypher("What a string!")).to eql("Bmfy f xywnsl!")
 		end
 	end
