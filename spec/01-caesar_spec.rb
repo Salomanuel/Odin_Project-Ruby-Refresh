@@ -30,8 +30,8 @@ describe CaesarCypher do
 		end
 
 		it "deals with weird characters" do
-			skip
-			expect(CaesarCypher.cypher("!@#${%^&*()-=}))aNo")).to eql("!@#${%^&*()-=}))gSt")
+			# skip
+			expect(CaesarCypher.cypher("!@#${%^&*()-=}))aNo")).to eql("!@#${%^&*()-=}))fSt")
 			expect(CaesarCypher.cypher("What a string!")).to eql("Bmfy f xywnsl!")
 		end
 	end
