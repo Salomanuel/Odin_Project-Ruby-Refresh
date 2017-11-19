@@ -3,11 +3,9 @@ class CaesarCypher
 		alphabet = ("a".."z").to_a
 		new_string = []
 		string.split("").each do |letter|
-			if alphabet.index(letter) + shift > 25 #(alphabet.length -1)
-				new_index = alphabet.index(letter) + shift - (alphabet.length) 
-			else
-				new_index = alphabet.index(letter) + shift
-			end
+			new_index  = alphabet.index(letter) + shift
+			# if it goes after z
+			new_index -= alphabet.length if new_index > (alphabet.length - 1)
 			new_letter = alphabet[new_index]
 			new_string << new_letter
 		end
