@@ -9,9 +9,16 @@ describe CaesarCypher do
 	describe ".cypher" do
 
 		it "cyphers simple words" do
-			expect(CaesarCypher.cypher("culo")).to		eql("oluc")
-			expect(CaesarCypher.cypher("banana")).to 	eql("ananab")
-			expect(CaesarCypher.cypher("anna")).to	 	eql("anna")
+			expect(CaesarCypher.cypher("hat")).to			eql("mfy")
+			expect(CaesarCypher.cypher("string")).to		eql("xywnsl")
+			# expect(CaesarCypher.cypher("culo")).to		eql("oluc")
+			# expect(CaesarCypher.cypher("banana")).to 	eql("ananab")
+			# expect(CaesarCypher.cypher("anna")).to	 	eql("anna")
+		end
+
+		it "goes around the alphabet" do
+			skip
+			expect(CaesarCypher.cypher("xyz")).to				eql("")
 		end
 		
 		it "respects caps lock" do
@@ -24,6 +31,7 @@ describe CaesarCypher do
 		it "deals with weird characters" do
 			skip
 			expect(CaesarCypher.cypher("!@#${%^&*()-=}))aNo")).to eql("aNo")
+			expect(CaesarCypher.cypher("What a string!")).to eql("Bmfy f xywnsl!")
 		end
 	end
 end
