@@ -22,24 +22,24 @@
 # 	return bubble_sort(array)
 # end
 
-def bubble_sort(array)
-	skips = 0
-	until skips > array.length do
-		array.each_index do |i|
-			break if i == array.length - 1
-			puts "#{i}) #{array} skips:#{skips}"
-			if array[i] > array[i + 1]
-				skips = 0
-				temp 					= array[i]
-				array[i] 			= array[i + 1]
-				array[i + 1] 	= temp
-			else
-				skips += 1
-			end
-		end
-	end
-	return array
-end
+# def bubble_sort(array)
+# 	skips = 0
+# 	until skips > array.length do
+# 		array.each_index do |i|
+# 			break if i == array.length - 1
+# 			puts "#{i}) #{array} skips:#{skips}"
+# 			if array[i] > array[i + 1]
+# 				skips = 0
+# 				temp 					= array[i]
+# 				array[i] 			= array[i + 1]
+# 				array[i + 1] 	= temp
+# 			else
+# 				skips += 1
+# 			end
+# 		end
+# 	end
+# 	return array
+# end
 
 
 puts bubble_sort([4,3,78,2,0,2]).join(", ")
@@ -52,9 +52,9 @@ puts bubble_sort([4,3,78,2,0,2]).join(", ")
 # => ["hi", "hey", "hello"]
 
 
-# def eat(meal)
-# 	meal.each { |food| yield(food)}
-# 	'delicious'
-# end
+def eat(meal)
+	meal.each { |food| yield(food)}
+	'delicious'
+end
 
-# puts eat(['cheese', 'steak', 'wine']) { |food| puts "Mmm, #{food}" }
+puts eat(['cheese', 'steak', 'wine']) { |food| puts "Mmm, #{food}" }
