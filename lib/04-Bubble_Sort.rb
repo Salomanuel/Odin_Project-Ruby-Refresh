@@ -18,10 +18,6 @@
 # 	return array
 # end
 
-# def bubble_sort_by(array, block)
-# 	return bubble_sort(array)
-# end
-
 # def bubble_sort(array)
 # 	skips = 0
 # 	until skips > array.length do
@@ -41,20 +37,18 @@
 # 	return array
 # end
 
+def bubble_sort_by(array)
+	return true		if yield(array[0], array[1])
+	return false
+end
 
-puts bubble_sort([4,3,78,2,0,2]).join(", ")
+
+
+# puts bubble_sort([4,3,78,2,0,2]).join(", ")
 # => [0,2,2,3,4,78]
 
 
-# bubble_sort_by(["hi","hello","hey"]) do |left,right|
-#   left.length - right.length
-# end
-# => ["hi", "hey", "hello"]
-
-
-def eat(meal)
-	meal.each { |food| yield(food)}
-	'delicious'
+bubble_sort_by(["hi","hello","hey"]) do |left,right|
+  left.length - right.length
 end
-
-puts eat(['cheese', 'steak', 'wine']) { |food| puts "Mmm, #{food}" }
+# => ["hi", "hey", "hello"]
