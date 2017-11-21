@@ -1,0 +1,63 @@
+require "05-enumerable"
+
+describe "Enumerable" do
+	class Array
+		include Enumerable
+	end
+
+	empty 			= []
+	zero123 		= (0..3).to_a
+	same 				= Proc.new { |elt| elt }
+	plus_one		= Proc.new { |elt| elt + 1 }
+	with_index 	= Proc.new { |elt, idx| elt }
+	even				= Proc.new { |elt| elt % 2 == 0 }
+
+	describe "#my_each" do
+		context "when called by an empty array" do
+			it "returns an empty array" do
+				a = empty.my_each(&plus_one)
+				expect(a).to eq([])
+			end
+		end
+		context "when called by a non-empty array" do
+			it "returns the same array with a 'same' block" do
+				b = zero123.my_each(&same)
+				expect(b).to eq([0, 1, 2, 3])
+			end
+			it "returns each element plus one with a 'plus_one' block" do 
+				c = zero123.my_each(&plus_one)
+				expect(c).to eq([1, 2, 3, 4])
+			end
+		end
+	end
+
+	describe "#my_each_with_index" do
+		context "when called by an emtpy array" do
+			it "returns an empty array" do
+				a = empty.my_each_with_index(&with_index)
+				expect(a).to eq([])
+			end
+		end
+		context "when called by a non-empty array" do
+			it "returns the same array with a 'same' block" do
+				b = zero123.my_each(&with_index)
+				expect(b).to eq([0, 1, 2, 3])
+			end
+		end
+	end
+
+	describe "#my_select" do
+		context "when called by an empty array" do
+			it "returns an empty array" do
+				a = empty.my_select(&even)
+				expect(a).to eq([])
+			end
+		end
+		context "when called by a non-empty array" do
+			it "returns only the even numbers with an 'even' block" do
+				b = zero123.my_select(&even)
+				expect(b).to eq([0, 2])
+			end
+		end
+	end
+end
