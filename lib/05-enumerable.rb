@@ -84,6 +84,11 @@ module Enumerable
 		return true
 	end
 
+	def my_any?
+		self.my_each { |i| return true if yield i }
+		return false
+	end
+
 end
 
 
