@@ -51,7 +51,7 @@ You learned about the Enumerable module that gets mixed into the Array and Hash 
 4. Create `#my_each_with_index` in the same way.
 5. Create `#my_select` in the same way, though you may use `#my_each` in your definition (but not `#each`).
 6. Create `#my_all?` (continue as above)
-7. Create `#my_any?``
+7. Create `#my_any?`
 8. Create `#my_none?`
 9. Create `#my_count`
 10. Create `#my_map`

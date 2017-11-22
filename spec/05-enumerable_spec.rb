@@ -60,4 +60,19 @@ describe "Enumerable" do
 			end
 		end
 	end
+
+	describe "#my_all?" do
+		context "when called by an empty array" do
+			it "returns true" do
+				a = empty.my_all?(&even)
+				expect(a).to be true
+			end
+		end
+		context "when called by a non-empty array" do
+			it "returns false with an 'even' block" do
+				b = zero123.my_all?(&even)
+				expect(b).to be false
+			end
+		end
+	end
 end
