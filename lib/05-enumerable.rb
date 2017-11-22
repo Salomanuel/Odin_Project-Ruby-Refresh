@@ -94,6 +94,19 @@ module Enumerable
 		return true
 	end
 
+	def my_count
+		count = 0
+		for i in self
+			count += 1
+		end
+		return count
+	end
+
+	# def my_count
+	# 	count = 0
+	# 	self.my_each { |i| count += 1 }
+	# 	return count
+	# end
 end
 
 

@@ -105,5 +105,19 @@ describe "Enumerable" do
 			end
 		end
 	end
-		# describe 
+
+	describe "#my_count" do
+		context "when called by an empty array" do
+			it "returns zero" do
+				a = empty.my_count
+				expect(a).to eq(0)
+			end
+		end
+		context "when called by a non-empty array" do
+			it "returns four" do
+				b = zero123.my_count
+				expect(b).to eq(4)
+			end
+		end
+	end
 end
