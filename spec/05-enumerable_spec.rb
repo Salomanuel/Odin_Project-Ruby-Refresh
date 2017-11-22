@@ -90,4 +90,20 @@ describe "Enumerable" do
 			end
 		end
 	end
+
+	describe "#my_none?" do
+		context "when called by an empty array" do
+			it "return true" do
+				a = empty.my_none?(&even)
+				expect(a).to be true
+			end
+		end
+		context "when called by a non-empty array" do
+			it "returns false with an 'even' block" do
+				b = zero123.my_none?(&even)
+				expect(b).to be false
+			end
+		end
+	end
+		# describe 
 end
