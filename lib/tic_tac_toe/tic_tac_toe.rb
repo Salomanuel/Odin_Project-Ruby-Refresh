@@ -1,6 +1,5 @@
 # stuff to implement:
 	# skull
-	# input parser (letter and number = row and column)
 
 module Board
 	def create_board
@@ -14,27 +13,42 @@ module Board
 	end
 
 	def tile_free?(move)
+		puts "#{move.join}"
 		y = move[0]
 		x = move[1]
-		puts "the tile is #{@board[y][x]}"
+		# puts "the tile is #{@board[y][x]}"
 		return true if @board[y][x] == "."
 		return false
+	end
+
+	def write_board(move, player1)
+		if tile_free?(move)
+			case player1
+				when true  then @board[move[0]][move[1]] = "X"
+				when false then @board[move[0]][move[1]] = "O"
+			end
+		else
+			puts "Invalid move, tile already occupied"
+			new_turn(true, player1)
+		end
 	end
 end
 
 module Input
 	def ask_input
-		puts
-		puts "It's your turn, make a move"
+		puts "Make a move"
 		return parse_input(gets.chomp)
 	end
 
 	def input_error
-		puts "Please write a valid input, like C3"
-		new_turn(true)
+		puts "Please write a valid input, like C2"
+		ask_input
+		# new_turn(true)
 	end
 
 	def parse_input(input)
+		exit if input == "exit"
+
 		valid_input = []
 		letter_present  = false
 		number_present  = false
@@ -63,28 +77,26 @@ end
 
 module Game
 	def welcome
-		puts
-		puts "Welcome to TicTacToe OF DEATH"
-		puts
+		puts "\nWelcome to TicTacToe OF DEATH"
+		puts "\n"
 	end
 
-	def new_turn(again=false)
+	def new_turn(again=false, player1)
 		show_board if not again
+		puts "\nIt's player ##{player1 ? 1 : 2}'s turn"
 		move = ask_input
 		if tile_free?(move)
-			puts "correct (new)"
-			@board[move[0]][move[1]] = "X"
-			puts @board[1]
-			new_turn
+			write_board(move, player1)
+			new_turn(false, !player1)
 		else
-			redo_turn
+			puts "Invalid move, tile already occupied"
+			new_turn(true, player1)
 		end
 	end
+end
 
-	def move_error
-		puts "Invalid move"
-		new_turn(true)
-	end
+module Player
+
 end
 
 class TicTacToe
@@ -95,7 +107,7 @@ class TicTacToe
 	def initialize
 		create_board
 		welcome
-		new_turn
+		new_turn(false, true) #again and player1
 	end
 
 end
