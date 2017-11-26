@@ -13,10 +13,52 @@ module Board
 		@board.each_with_index { |row, i| puts "#{i} #{row.join("  ")}" }
 	end
 
-	def check_move(move)
+	def tile_free?(move)
+		y = move[0]
+		x = move[1]
+		puts "the tile is #{@board[y][x]}"
+		return true if @board[y][x] == "."
+		return false
+	end
+end
+
+module Input
+	def ask_input
+		puts
+		puts "It's your turn, make a move"
+		return parse_input(gets.chomp)
 	end
 
+	def input_error
+		puts "Please write a valid input, like C3"
+		redo_turn
+	end
 
+	def parse_input(input)
+		valid_input = []
+		letter_present  = false
+		number_present  = false
+		input.upcase.split("").each do |n|
+			if ("A".."C").to_a.include?(n) and (not letter_present)
+				valid_input << n 
+				letter_present = true
+			end
+			if ("0".."2").to_a.include?(n) and (not number_present)
+				valid_input << n
+				number_present = true
+			end
+		end
+		if valid_input.length != 2
+			input_error
+		end
+		valid_input.sort!
+		case valid_input[1]
+			when "A" then x = 0
+			when "B" then x = 1
+			when "C" then x = 2
+		end
+		return [valid_input[0].to_i, x]
+	end
 end
 
 module Game
@@ -26,22 +68,38 @@ module Game
 		puts
 	end
 
-	def ask_input
-		puts
-		puts "It's your turn, make a move"
-		@player_move = gets.chomp
-		return @player_move
-	end
-
 	def new_turn
 		show_board
-		ask_input
+		move = ask_input
+		if tile_free?(move)
+			puts "correct (new)"
+			@board[move[0]][move[1]] = "X"  # QUA NON FUNZIONA
+			puts @board[1]
+			new_turn
+		else
+			redo_turn
+		end
+	end
+
+	def redo_turn
+		move = ask_input
+		if tile_free?(move)
+			puts "correct (redo)"
+		else
+			move_error
+		end
+	end
+
+	def move_error
+		puts "Invalid move"
+		redo_turn
 	end
 end
 
 class TicTacToe
 	include Board
 	include Game
+	include Input
 
 	def initialize
 		create_board
