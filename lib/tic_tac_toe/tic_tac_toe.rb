@@ -31,7 +31,7 @@ module Input
 
 	def input_error
 		puts "Please write a valid input, like C3"
-		redo_turn
+		new_turn(true)
 	end
 
 	def parse_input(input)
@@ -68,12 +68,12 @@ module Game
 		puts
 	end
 
-	def new_turn
-		show_board
+	def new_turn(again=false)
+		show_board if not again
 		move = ask_input
 		if tile_free?(move)
 			puts "correct (new)"
-			@board[move[0]][move[1]] = "X"  # QUA NON FUNZIONA
+			@board[move[0]][move[1]] = "X"
 			puts @board[1]
 			new_turn
 		else
@@ -81,18 +81,9 @@ module Game
 		end
 	end
 
-	def redo_turn
-		move = ask_input
-		if tile_free?(move)
-			puts "correct (redo)"
-		else
-			move_error
-		end
-	end
-
 	def move_error
 		puts "Invalid move"
-		redo_turn
+		new_turn(true)
 	end
 end
 
