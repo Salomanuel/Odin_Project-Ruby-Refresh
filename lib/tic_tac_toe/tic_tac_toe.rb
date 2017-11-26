@@ -87,12 +87,30 @@ module Game
 		move = ask_input
 		if tile_free?(move)
 			write_board(move, player1)
+			winner(has_won?) if has_won?
 			new_turn(false, !player1)
 		else
 			puts "Invalid move, tile already occupied"
 			new_turn(true, player1)
 		end
 	end
+
+	def has_won?
+		@board.each do |row| # HORIZONTAL
+			return "player1" if row.all?{ |c| c == "X" }
+			return "player2" if row.all?{ |c| c == "x" }
+		end
+		return false
+		#VERTICAL
+		#DIAGONAL
+	end
+
+	def winner(player)
+		puts "#{player} won! \nnow stop wasting time and shut off your pc"
+		exit
+	end
+
+
 end
 
 module Player
