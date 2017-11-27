@@ -1,5 +1,6 @@
 # stuff to implement:
 	# skull
+	# is full end game
 
 module Board
 	def create_board
@@ -111,8 +112,8 @@ module Game
 
 		# HORIZONTAL
 		@board.each do |row| 
-			return "player1" if row.all?{ |c| c == "X" }
-			return "player2" if row.all?{ |c| c == "O" }
+			return "player1 h" if row.all?{ |c| c == "X" }
+			return "player2 h" if row.all?{ |c| c == "O" }
 		end
 		
 		# VERTICAL
@@ -142,13 +143,29 @@ module Game
 		return "player1" if diagonal2.all?{ |c| c == "X" }
 		return "player2" if diagonal2.all?{ |c| c == "O" }
 
+		# TIE
+		empty_tiles = false
+		@board.each{ |row|  empty_tiles = true if row.include?(".") }
+		return "tie" if not empty_tiles
+
 		return false
 	end
 
 	def winner(player)
 		show_board
-		puts "#{player} won! \nnow stop wasting time and shut off your pc"
-		exit
+		if player == "tie"
+			puts "it's a tie!"
+			puts "want to play again?"
+			case gets.chomp
+			when "y"
+				initialize
+			when "n"
+				exit
+			end
+		else
+			puts "#{player} won! \nnow stop wasting time and shut off your pc"
+			exit
+		end
 	end
 
 
@@ -189,8 +206,7 @@ class TicTacToe
 	def initialize
 		create_board
 		welcome
-		ia_choice
-		new_turn(false, true) #again, player1, ia
+		new_turn(false, true, ia_choice) #again, player1, ia
 	end
 
 end
