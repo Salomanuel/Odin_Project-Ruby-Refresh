@@ -128,14 +128,20 @@ module Game
 		end
 
 		# DIAGONAL
-		case @board[0][0] and @board[1][1] and @board[2][2]
-			when "X" then return "player1" 
-			when "O" then return "player2"
-		end
-		case @board[0][2] and @board[1][1] and @board[2][0]
-			when "X" then return "player1"
-			when "O" then return "player2"
-		end
+		diagonal1 = []
+		diagonal1 << @board[0][0]
+		diagonal1 << @board[1][1]
+		diagonal1 << @board[2][2]
+		return "player1" if diagonal1.all?{ |c| c == "X" }
+		return "player2" if diagonal1.all?{ |c| c == "O" }
+
+		diagonal2 = []
+		diagonal2 << @board[0][2]
+		diagonal2 << @board[1][1]
+		diagonal2 << @board[2][0]
+		return "player1" if diagonal2.all?{ |c| c == "X" }
+		return "player2" if diagonal2.all?{ |c| c == "O" }
+
 		return false
 	end
 
