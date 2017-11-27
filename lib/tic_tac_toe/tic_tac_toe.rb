@@ -121,9 +121,13 @@ module Game
 			return "player2" if o_count > 2
 		end
 
+		# DIAGONAL
+		case (@board[00] and @board[11] and @board[22])
+		when "X" then return "player1"
+		when "O" then return "player2"
+		end
+
 		return false
-		#VERTICAL
-		#DIAGONAL
 	end
 
 	def winner(player)
