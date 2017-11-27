@@ -122,11 +122,14 @@ module Game
 		end
 
 		# DIAGONAL
-		case (@board[00] and @board[11] and @board[22])
-		when "X" then return "player1"
-		when "O" then return "player2"
+		case @board[0][0] and @board[1][1] and @board[2][2]
+			when "X" then return "player1" 
+			when "O" then return "player2"
 		end
-
+		case @board[0][2] and @board[1][1] and @board[2][0]
+			when "X" then return "player1"
+			when "O" then return "player2"
+		end
 		return false
 	end
 
