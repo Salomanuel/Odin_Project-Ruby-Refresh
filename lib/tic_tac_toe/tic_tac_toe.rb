@@ -102,10 +102,25 @@ module Game
 
 	def has_won?
 		# puts "*** #has_won?"
-		@board.each do |row| # HORIZONTAL
+
+		# HORIZONTAL
+		@board.each do |row| 
 			return "player1" if row.all?{ |c| c == "X" }
 			return "player2" if row.all?{ |c| c == "O" }
 		end
+		
+		# VERTICAL
+		3.times do |i|
+			x_count = 0
+			o_count = 0
+			@board.each do |row|
+				x_count += 1 if row[i] == "X"
+				o_count += 1 if row[i] == "O"
+			end
+			return "player1" if x_count > 2
+			return "player2" if o_count > 2
+		end
+
 		return false
 		#VERTICAL
 		#DIAGONAL
