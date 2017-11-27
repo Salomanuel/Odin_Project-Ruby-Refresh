@@ -82,21 +82,27 @@ module Game
 	def welcome
 		puts "\nWelcome to TicTacToe OF DEATH"
 		puts "\n"
+		puts "(write exit anytime to exit)"
+		puts "\n"
 	end
 
-	def new_turn(again=false, player1)
+	def new_turn(again=false, player1=true, ai=true)
 		# puts "*** #new turn | again=#{again}"
 		show_board if not again
 		puts "\nIt's player ##{player1 ? 1 : 2}'s turn"
-		move = ask_input
+		if (not player1) and ai
+			move = random_move
+		else
+			move = ask_input
+		end
 		# puts "****** still inside #new_turn, move is #{move}"
 		if tile_free?(move)
 			write_board(move, player1)
 			winner(has_won?) if has_won?
-			new_turn(false, !player1)
+			new_turn(false, !player1, ai)
 		else
 			puts "Invalid move, tile already occupied"
-			new_turn(true, player1)
+			new_turn(true, player1, ai)
 		end
 	end
 
@@ -142,19 +148,43 @@ module Game
 
 end
 
-module Player
+module Ia
+	def ia_choice
+		puts "\nplay against a super advanced AI?"
+		case gets.chomp
+		when "y"
+			puts "bring it on"
+			return true
+		when "n"
+			puts "you prefer humans, after all"
+			return false
+		when "exit"
+			exit
+		else
+			puts "answer with y or n"
+			ia_choice
+		end
+	end
 
+	def random_move
+		sleep(0.5)
+		move = [rand(3),rand(3)]
+		return move if tile_free?(move)
+		random_move
+	end
 end
 
 class TicTacToe
 	include Board
 	include Game
 	include Input
+	include Ia
 
 	def initialize
 		create_board
 		welcome
-		new_turn(false, true) #again and player1
+		ia_choice
+		new_turn(false, true) #again, player1, ia
 	end
 
 end
