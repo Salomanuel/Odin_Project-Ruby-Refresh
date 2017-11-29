@@ -39,13 +39,24 @@ module Game
 
 	def new_turn
 		@turn ||= 0
-		show_board
 		code = get_input
-		puts compare_code(code)
-		puts "turn: #{@turn}"
 		write_board(code, @turn, compare_code(code))
+		show_board
 		@turn += 1
-		new_turn
+		new_turn if not win?(code)
+	end
+
+	def win?(code)
+		if @secret_code == code
+			puts "you got the code!"
+			exit
+		elsif 
+			@turn > 11
+			puts "you ran out of turns, try a new game"
+			exit
+		else
+			return false
+		end
 	end
 end
 
