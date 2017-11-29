@@ -17,14 +17,14 @@ module Board
 	end
 
 	def write_board(code, turn, hints)
-		@board[turn] = code
 		hints << " " until hints.length > 3
+		@board[turn] = code
 		@hints[turn] = hints
 	end
 end
 
 module Game
-	def secret_code
+	def generate_secret_code
 		@secret_code = []
 		4.times { @secret_code << ("A".."D").to_a[rand(4)] }
 		return @secret_code
@@ -32,23 +32,34 @@ module Game
 
 	def get_hints(code)
 		hints = []
+		secret = @secret_code.dup
 		code_h = code.dup
 		code_h.each_index do |i|	
-			if code_h[i] == @secret_code[i]
+			if ((code_h[i] == secret[i]) and (code_h[i] != "z"))
 				hints << "x"
-				code_h[i] = "z"
+				# code_h[i] = "z"
+				# puts "found #{code_h[i]} with #{secret[i]}"
+				secret[i] = "z"
+
 			end
+					# puts "#{code_h.join} #{secret.join} for #{code_h[i]} X"
+
 		end
 		code_h.each_index do |i|
-			# if @secred_code.
-			# 	hints << "." 
-			# end
+			if ((secret.include?(code_h[i])) and (code_h[i] != "z"))
+				hints << "."
+				# code_h[i] = "z"
+				# puts "found #{code_h[i]} with #{secret.join}"
+				secret[secret.index(code_h[i])] = "z"
+			end
+				# puts "#{code_h.join} #{secret.join} .	"
+
 		end
 		return hints
 	end
 
 	def new_turn
-		puts @secret_code.join
+		# puts @secret_code.join
 		@turn ||= 0
 		code = get_input
 		write_board(code, @turn, get_hints(code))
@@ -104,7 +115,7 @@ class Mastermind
 	include Input
 
 	def initialize
-		secret_code
+		generate_secret_code
 		create_board
 		show_board
 		new_turn
