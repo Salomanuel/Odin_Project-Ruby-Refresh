@@ -18,6 +18,7 @@ module Board
 
 	def write_board(code, turn, hints)
 		@board[turn] = code
+		hints << " " until hints.length > 3
 		@hints[turn] = hints
 	end
 end
@@ -29,18 +30,28 @@ module Game
 		return @secret_code
 	end
 
-	def compare_code(code)
-		result = []
-		code.each_index do |i|	
-			code[i] == @secret_code[i] ? result << "x" : result << " "
+	def get_hints(code)
+		hints = []
+		code_h = code.dup
+		code_h.each_index do |i|	
+			if code_h[i] == @secret_code[i]
+				hints << "x"
+				code_h[i] = "z"
+			end
 		end
-		return result
+		code_h.each_index do |i|
+			# if @secred_code.
+			# 	hints << "." 
+			# end
+		end
+		return hints
 	end
 
 	def new_turn
+		puts @secret_code.join
 		@turn ||= 0
 		code = get_input
-		write_board(code, @turn, compare_code(code))
+		write_board(code, @turn, get_hints(code))
 		show_board
 		@turn += 1
 		new_turn if not win?(code)
@@ -94,8 +105,8 @@ class Mastermind
 
 	def initialize
 		secret_code
-		puts @secret_code.join
 		create_board
+		show_board
 		new_turn
 	end
 
