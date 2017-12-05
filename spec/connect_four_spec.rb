@@ -1,20 +1,20 @@
 require 'connect_four'
 
-describe "Game" do
-	let(:game) { Game.new }
-	let(:board) { game.board }
+describe Connect4 do
+	subject(:game) {Connect4.new}
 
-	describe "Board" do
-		it "has 7 columns" do
-			expect(board.grid[0].length).to eq(7)
-		end
-		it "has 6 rows" do
-			expect(board.grid.length).to eq(6)
-		end
-		it "is mutable" do
-			board.drop_disk(3, player_2)
-			expect(board.grid[5][2]).to eq(player_2.sign)
+	describe "#initialize" do
+		it "sets board" do
+			empty_board = Hash[(0..6).map{ |x| [x, [".", ".", ".", ".", ".", "."]] }]
+			expect(game.board).to eq(empty_board)
 		end
 	end
 
+	describe "#check_the_coord" do
+		context "with valid coordinates" do
+			it "returns true" do
+				expect(game.check_the_coord(2)).to eq(true)
+			end
+		end
+	end
 end
