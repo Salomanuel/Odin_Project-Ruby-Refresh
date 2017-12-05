@@ -8,31 +8,24 @@ class Connect4
 		coord.between?(0,6) ? true : false
 	end
 
+	def check_if_free(coord, player)
+		horizontal_idx = @board[coord].index(".")
+		if horizontal_idx
+			@board[coord][horizontal_idx] = player
+		else
+			return false
+		end
+		return true
+	end
+
+	def visual
+		vertical = @board.values
+		horizontals =  vertical[0].zip(vertical[1], vertical[2],
+																	 vertical[3], vertical[4],
+																	 vertical[5], vertical[6]).reverse
+		string_to_visualize = horizontals.map { |arr| arr.join("  ") }.join("\n")
+	end
 
 
-
-
-
-
-
-
-
-
-	# attr_reader :board
-	
-	# def initialize
-	# 	@board = Board.new
-	# end
-
-	# class Board
-	# 	attr_reader :grid
-	# 	@@grid = [["_","_","_","_","_","_","_"],["_","_","_","_","_","_","_"],
-	# 						["_","_","_","_","_","_","_"],["_","_","_","_","_","_","_"],
-	# 						["_","_","_","_","_","_","_"],["_","_","_","_","_","_","_"]
-	# 					 ]
-	# 	def initialize
-	# 		@grid = @@grid.dup
-	# 	end
-	# end
 
 end
