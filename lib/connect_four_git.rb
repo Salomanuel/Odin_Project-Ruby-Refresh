@@ -1,4 +1,4 @@
-class Connect4
+class Connect4git
 	attr_accessor :board
 	def initialize
 		@board = Hash[(0..6).map{ |x| [x, [".", ".", ".", ".", ".", "."]] }]

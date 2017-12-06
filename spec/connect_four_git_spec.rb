@@ -1,7 +1,7 @@
-require 'connect_four'
+require 'connect_four_git'
 
-describe Connect4 do
-	subject(:game) {Connect4.new}
+describe Connect4git do
+	subject(:game) {Connect4git.new}
 
 	describe "#initialize" do
 		it "sets board" do
