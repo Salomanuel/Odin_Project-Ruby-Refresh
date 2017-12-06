@@ -5,6 +5,7 @@ describe Connect4 do
 
 	describe "#initialize" do
 		it "sets the board" do
+			# skip
 			fake_board = []
 			6.times { fake_board << %w(. . . . . . .) }
 			expect(game.board).to eq fake_board
