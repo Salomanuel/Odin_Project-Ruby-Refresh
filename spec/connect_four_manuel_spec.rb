@@ -1,5 +1,6 @@
 # test full columns
 # test invalid input
+# test winning with other player moves
 
 require "connect_four_manuel"
 
@@ -70,6 +71,17 @@ describe Connect4 do
 					expect(game.has_won?).to eq false
 				end
 			end
+			context "vertically" do
+				it "wins" do
+					4.times { game.move(5) }
+					expect(game.has_won?).to eq true
+				end
+				it "doesn't win" do
+					3.times { game.move(2) }
+					expect(game.has_won?).to eq false
+				end
+			end
+
 		end
 	end
 

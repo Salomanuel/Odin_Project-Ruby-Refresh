@@ -79,16 +79,30 @@ class Connect4
 				return true if x > 3
 			end
 		end
+		# vertically
+		x = 0
+		7.times do |col|
+			6.times do |row|
+				case @board[row][col]
+				when "x" then x += 1
+				else 
+					x = 0
+				end
+				return true if x > 3
+			end
+		end
 		return false
 	end
 
 
 end
 
-game = Connect4.new
+# game = Connect4.new
 # game.move(0)
 # game.move(0)
 # game.move(1)
 # game.move(0)
-# # puts "is it free? #{game.is_it_free?(0,0)}"
-game.show_board
+# game.move(0)
+# # # puts "is it free? #{game.is_it_free?(0,0)}"
+# game.show_board
+# puts game.has_won?
