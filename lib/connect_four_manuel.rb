@@ -49,10 +49,10 @@ class Connect4
 			# return "column full"
 		elsif     line == 5
 			# puts "write move because it's the bottom row"
-			@board[line][column] = "x"
+			write_move(column, line)
 		elsif not is_it_free?(column, (line + 1))
 			# puts "write move because line + 1 not free"
-			@board[line][column] = "x" 
+			write_move(column, line)
 		elsif     is_it_free?(column, (line + 1))
 			# puts "line ##{line}, calling recursion"
 
@@ -65,13 +65,30 @@ class Connect4
 		end 
 	end
 
+	def has_won?
+		# horizontally
+		x = 0
+		@board.each do |row|
+			row.each do |tile|
+				case tile
+				when "x" then x += 1
+				when "." then x = 0
+				else
+					puts "ERROR"
+				end
+				return true if x > 3
+			end
+		end
+		return false
+	end
+
 
 end
 
 game = Connect4.new
-game.move(0)
-game.move(0)
-game.move(1)
-game.move(0)
-# puts "is it free? #{game.is_it_free?(0,0)}"
+# game.move(0)
+# game.move(0)
+# game.move(1)
+# game.move(0)
+# # puts "is it free? #{game.is_it_free?(0,0)}"
 game.show_board

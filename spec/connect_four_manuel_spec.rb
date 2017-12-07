@@ -15,7 +15,7 @@ describe Connect4 do
 		end
 	end
 
-	context "game" do
+	context "tiles" do
 		describe "#is_it_free?" do
 			it "returns true when it's free" do
 				expect(game.is_it_free?(2,5)).to eq true
@@ -26,16 +26,17 @@ describe Connect4 do
 				expect(game.is_it_free?(1,5)).to eq false
 			end
 		end
+	end
 
+	context "moves" do
 		describe "#move" do
-
 			# TEST COLUMN FULL
-
 			it "occupies a full line" do
 				# skip
 				7.times { |i| game.move(i) }
 				expect(game.board[5]).to eq %w(x x x x x x x)
 			end
+
 			it "makes the chip falls till a free tile" do
 				# skip
 				3.times { game.move(5) }
@@ -45,10 +46,33 @@ describe Connect4 do
 			end
 
 			it "draws a triangle" do
-				skip
+				triangle_board = 
+					[["x",".",".",".",".",".","."],["x","x",".",".",".",".","."],
+					["x","x","x",".",".",".","."],["x","x","x","x",".",".","."],
+					["x","x","x","x","x",".","."],["x","x","x","x","x","x","."]]
+				# skip
+				7.times { |i| i.times { |j| game.move(j) } }
+				expect(game.board).to eq triangle_board
 			end
 		end
 	end
+
+	context "rules" do
+		describe "#has_won?" do
+			context "horizontally" do 
+				it "wins" do
+					4.times { |i| game.move(i) }
+					expect(game.has_won?).to eq true
+				end
+				it "doesn't win" do
+					3.times { |i| game.move(i) }
+					game.move(4)
+					expect(game.has_won?).to eq false
+				end
+			end
+		end
+	end
+
 
 	# context "Graphics" do
 	# 	it "shows an empty board nicely" do
