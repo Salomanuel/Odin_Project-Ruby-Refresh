@@ -1,3 +1,5 @@
+# refactor #board_creator
+
 class Connect4
 
 	attr_reader :board
@@ -7,10 +9,13 @@ class Connect4
 	end
 
 	def board_creator
-		@board = []
-		row 	 = []
-		7.times { row    << "." }
-		6.times { @board << row }
+		@board = [[".",".",".",".",".",".","."],[".",".",".",".",".",".","."],
+							[".",".",".",".",".",".","."],[".",".",".",".",".",".","."],
+							[".",".",".",".",".",".","."],[".",".",".",".",".",".","."]]
+		# @board = []
+		# row 	 = []
+		# 7.times { row    << "." }
+		# 6.times { @board << row }
 	end
 
 	def show_board
@@ -20,16 +25,53 @@ class Connect4
 		puts (0..6).to_a.join(" ")
 	end
 
-	def is_it_free?(line, column)
+	def is_it_free?(column,line)
 		return true if @board[line][column] == "."
 		return false
 	end
 
+	def write_move(column,line,player1=true)
+		color = player1 ? "x" : "o"
+		@board[line][column] = color
+	end
+
 	def move(column, line=0)
-		@board[5][column] = "x"
+		# puts @board[line][column]
+		# @board[line][column] =
+		# puts @board[4][3]
+		#  puts @board[4].join("@")
+		# @board[4][3] = "o"
+		# @board[5][3] = "u"
+		# puts "\t is #{column}:#{line} free? #{is_it_free?(column, line)}"
+
+		if not is_it_free?(column,0)
+			# puts "column full"
+			# return "column full"
+		elsif     line == 5
+			# puts "write move because it's the bottom row"
+			@board[line][column] = "x"
+		elsif not is_it_free?(column, (line + 1))
+			# puts "write move because line + 1 not free"
+			@board[line][column] = "x" 
+		elsif     is_it_free?(column, (line + 1))
+			# puts "line ##{line}, calling recursion"
+
+			# puts "\t is the next line free? #{is_it_free?(column, (line + 1))}"
+			# puts "\t last line free? #{is_it_free?((5),5)}"
+			# puts "\t last line cell is: #{@board[5][5]}"
+			move(column, (line + 1)) # recursion
+		else
+			puts "MISTICAL ERROR"
+		end 
 	end
 
 
 end
 
-# Connect4.new.show_board
+game = Connect4.new
+game.move(0)
+game.move(0)
+game.move(1)
+game.move(0)
+# puts "is it free? #{game.is_it_free?(0,0)}"
+game.show_board
