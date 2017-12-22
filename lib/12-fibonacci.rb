@@ -1,7 +1,7 @@
 def fibo(n, result=0)
 	return 0 if n == 0
 	return 1 if n == 1
-	puts "with #{n} you have:#{result}"
+	# puts "with #{n} you have:#{result}"
 	return (fibo(n-1) + fibo(n-2))
 end
 
