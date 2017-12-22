@@ -72,10 +72,10 @@ class Connect4
 			row.each do |tile|
 				case tile
 				when "x" then x += 1
-				when "." then x = 0
 				else
-					puts "ERROR"
+					x = 0
 				end
+				puts "HORIZONTAL win" if x > 3
 				return true if x > 3
 			end
 		end
@@ -88,9 +88,14 @@ class Connect4
 				else 
 					x = 0
 				end
+				puts "VERTICAL win" if x > 3
 				return true if x > 3
 			end
 		end
+		# diagonally
+
+
+		
 		return false
 	end
 
@@ -98,11 +103,13 @@ class Connect4
 end
 
 # game = Connect4.new
-# game.move(0)
-# game.move(0)
-# game.move(1)
-# game.move(0)
-# game.move(0)
-# # # puts "is it free? #{game.is_it_free?(0,0)}"
+# # game.move(0)
+# # game.move(0)
+# # game.move(1)
+# # game.move(0)
+# # game.move(0)
+# # # # puts "is it free? #{game.is_it_free?(0,0)}"
+# 5.times { |i|	i	.times { |j| game.move(j) } }
+# game.board[5][0] = "."
 # game.show_board
 # puts game.has_won?

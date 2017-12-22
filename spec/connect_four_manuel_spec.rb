@@ -1,6 +1,7 @@
 # test full columns
 # test invalid input
 # test winning with other player moves
+# test winning diagonally with other player
 
 require "connect_four_manuel"
 
@@ -81,7 +82,14 @@ describe Connect4 do
 					expect(game.has_won?).to eq false
 				end
 			end
-
+			context "diagonally" do
+				# it "wins" do
+				# 	skip "pausing development for the recursion"
+				# 	5.times { |i|	i	.times { |j| game.move(j) } }
+				# 	game.board[5][0] = "."
+				# 	expect(game.has_won?).to eq true
+				# end
+			end
 		end
 	end
 
