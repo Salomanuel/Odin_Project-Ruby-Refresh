@@ -75,3 +75,19 @@ Build a Mastermind game from the command line where you have 12 turns to guess t
 2) Now refactor your code to allow the human player to choose whether she wants to be the creator of the secret code or the guesser.
 3) Build it out so that the computer will guess if you decide to choose your own secret colors. Start by having the computer guess randomly (but keeping the ones that match exactly).
 4) Next, add a little bit more intelligence to the computer player so that, if the computer has guessed the right color but the wrong position, its next guess will need to include that color somewhere. Feel free to make the AI even smarter.
+
+## 09-factorial
+
+Define a recursive function that finds the factorial of a number
+
+## 10-pali-recursi
+
+Define a recursive function that returns true if a string is a palindrome and false otherwise.
+
+## 11-bottles_of_beer
+
+Define a recursive function that takes an argument n and prints "n bottles of beer on the wall", "(n-1) bottles of beer on the wall", ..., "no more bottles of beer on the wall".
+
+## 12-fibonacci
+
+Define a recursive function that takes an argument n and returns the fibonacci value of that position. The fibonacci sequence is 0, 1, 1, 2, 3, 5, 8, 13, 21... So fib(5) should return 5 and fib(6) should return 8.
