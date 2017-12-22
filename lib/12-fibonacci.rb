@@ -9,10 +9,10 @@ end
 # 	puts "with #{i} is: #{fibo(i)}"
 # end
 
-result100 = 354224848179261915075
-result50 = 12586269025
+# result100 = 354224848179261915075
+# result50 = 12586269025
 # puts fibo(50) == result50
 # puts fibo(50)
-puts fibo(30)
+# puts fibo(30)
 # puts fibo(100) == result100
 # puts fibo(100)
