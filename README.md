@@ -91,3 +91,8 @@ Define a recursive function that takes an argument n and prints "n bottles of be
 ## 12-fibonacci
 
 Define a recursive function that takes an argument n and returns the fibonacci value of that position. The fibonacci sequence is 0, 1, 1, 2, 3, 5, 8, 13, 21... So fib(5) should return 5 and fib(6) should return 8.
+
+# 13-array flatter
+
+# 14-merge sort
+You’ll build a method which sorts a given array, using a recursive merge sort methodology.
