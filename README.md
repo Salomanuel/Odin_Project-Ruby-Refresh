@@ -94,5 +94,12 @@ Define a recursive function that takes an argument n and returns the fibonacci v
 
 # 13-array flatter
 
-# 14-merge sort
+Define a recursive function that flattens an array. The method should convert [[1, 2], [3, 4]] to [1, 2, 3, 4] and [[1, [8, 9]], [3, 4]] to [1, 8, 9, 3, 4].
+
+# 14-merge-sort
+
 You’ll build a method which sorts a given array, using a recursive merge sort methodology.
+
+# 14-roman_numeral_recursi
+
+Use the roman_mapping hash to define a recursive method that converts an integer to a Roman numeral.
