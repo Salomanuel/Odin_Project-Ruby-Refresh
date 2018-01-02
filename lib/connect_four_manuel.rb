@@ -75,7 +75,7 @@ class Connect4
 				else
 					x = 0
 				end
-				puts "HORIZONTAL win" if x > 3
+				# puts "HORIZONTAL win" if x > 3
 				return true if x > 3
 			end
 		end
@@ -88,7 +88,7 @@ class Connect4
 				else 
 					x = 0
 				end
-				puts "VERTICAL win" if x > 3
+				# puts "VERTICAL win" if x > 3
 				return true if x > 3
 			end
 		end
