@@ -1,6 +1,6 @@
 def sort(unsorted)
 	# DIVIDE
-	if unsorted.length > 1
+	if unsorted.length > 2
 		half = unsorted.length/2
 		part1 = unsorted[0..half-1]
 		part2 = unsorted[half ..-1]
